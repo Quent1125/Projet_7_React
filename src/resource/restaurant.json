@@ -1,0 +1,98 @@
+[
+  {
+    "restaurantName":"Bronco",
+    "address":"39 Rue des Petites Écuries, 75010 Paris",
+    "lat":48.8737815,
+    "long":2.3501649,
+    "ratings":[
+      {
+        "stars":4,
+        "comment":"Un excellent restaurant, j'y reviendrai ! Par contre il vaut mieux aimer la viande."
+      },
+      {
+        "stars":5,
+        "comment":"Tout simplement mon restaurant préféré !"
+      }
+    ]
+  },
+  {
+    "restaurantName":"Babalou",
+    "address":"4 Rue Lamarck, 75018 Paris",
+    "lat":48.8865035,
+    "long":2.3442197,
+    "ratings":[
+      {
+        "stars":5,
+        "comment":"Une minuscule pizzeria délicieuse cachée juste à côté du Sacré choeur !"
+      },
+      {
+        "stars":3,
+        "comment":"J'ai trouvé ça correct, sans plus"
+      }
+    ]
+  },
+  {
+    "restaurantName":"Auberge des Hauts du Roy",
+    "address":"1174 Rue de Saint-Sulpice, 42300 Villerest",
+    "lat":45.990748,
+    "long":4.018941,
+    "ratings":[
+      {
+        "stars":5,
+        "comment":"Lieu avec une superbe vue ! La prochaine fois on s'arrête manger !"
+      },
+      {
+        "stars":5,
+        "comment":"Très beau resto , le menu est bon rien à dire super "
+      }
+    ]
+  },
+  {
+    "restaurantName":"Restaurant Lac de Villerest",
+    "address":"193 Route des Frères Montgolfier, 42300 Villerest",
+    "lat":45.985701,
+    "long":4.037284,
+    "ratings":[
+      {
+        "stars":5,
+        "comment":"Lieu avec une superbe vue ! La prochaine fois on s'arrête manger !"
+      },
+      {
+        "stars":5,
+        "comment":"Très beau resto , le menu est bon rien à dire super "
+      }
+    ]
+  },
+  {
+    "restaurantName":"Auberge du Pont",
+    "address":"Chemin de Halage, 42300 Villerest",
+    "lat":45.996330,
+    "long":4.044699,
+    "ratings":[
+      {
+        "stars":5,
+        "comment":"Lieu avec une superbe vue ! La prochaine fois on s'arrête manger !"
+      },
+      {
+        "stars":5,
+        "comment":"Très beau resto , le menu est bon rien à dire super "
+      }
+    ]
+  },
+  {
+    "restaurantName":"Château de Champlong",
+    "address":"100 Chemin de la Chapelle, 42300 Villerest",
+    "lat":45.999380,
+    "long":4.020130,
+    "ratings":[
+      {
+        "stars":5,
+        "comment":"Lieu avec une superbe vue ! La prochaine fois on s'arrête manger !"
+      },
+      {
+        "stars":5,
+        "comment":"Très beau resto , le menu est bon rien à dire super "
+      }
+    ]
+  }
+]
