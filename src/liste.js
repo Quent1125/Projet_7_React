@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Restaurant from "./restaurant.js";
 
+
 class Liste extends Component{
 
     constructor(props){
@@ -14,13 +15,14 @@ class Liste extends Component{
         let request = new XMLHttpRequest();
         request.onreadystatechange = function() {
             if ((this.readyState === XMLHttpRequest.DONE) && (this.status === 200)) {
-                let response = JSON.parse(this.responseText);
-                response.map( x => this.setState({restaurantList: this.restaurantList.push(x)}))
+               // let response = JSON.parse(this.responseText);
+                console.log(this.responseText)
             }
 
         };
-        request.open("GET", "resource/restaurant.json");
+        request.open("GET", require("./resource/restaurant.json"));
         request.send();
+
 
     }
 
@@ -29,7 +31,7 @@ class Liste extends Component{
     }
 
     render() {
-        console.log(this.state.restaurantList)
+
         return(
             <div className="tableList">
                 <h2>Liste des restaurant</h2>
