@@ -35,9 +35,6 @@ class Maps extends Component{
             width: '1250px',
             height: '685px'
         }
-        const iconHome = './resource/img/icons8-home-address-64.png'
-
-        console.log(iconHome)
         return (
             <LoadScript
                 googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"

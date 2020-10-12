@@ -19,6 +19,9 @@ class Liste extends Component{
             }
 
         };
+        request.open("GET", "resource/restaurant.json");
+        request.send();
+
     }
 
     componentDidMount() {
@@ -26,11 +29,11 @@ class Liste extends Component{
     }
 
     render() {
-
+        console.log(this.state.restaurantList)
         return(
             <div className="tableList">
                 <h2>Liste des restaurant</h2>
-                {this.restaurantList.map( x =>
+                {this.state.restaurantList.map( x =>
                     <Restaurant location = {x.location} name = {x.name} address= {x.address} ratings = {x.ratings} />
                 )}
             </div>
