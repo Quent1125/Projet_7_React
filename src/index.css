@@ -14,7 +14,6 @@ html, body {
  }
 
 #box{
-    height: 100%;
     display: flex;
     justify-content: center;
 }
@@ -30,9 +29,7 @@ img{
     text-align: center;
 }
 
-.reviews{
-    margin-top: 2.5%;
-}
+
 
 h1,h2,h3{
     text-align: center;
@@ -50,7 +47,4 @@ h1,h2,h3{
     overflow: auto;
 }
 
-#pano{
-    height: 100%;
-    width: 50%;
-}
+

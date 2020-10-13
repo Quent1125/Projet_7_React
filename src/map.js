@@ -10,13 +10,15 @@ class Maps extends Component{
     constructor(props){
         super(props);
         this.state = {
-            locationCenter : {lat: 48.8534, lng: 2.3488},
-            restaurant : [],
+            tabRestaurant : this.props.data,
+            locationCenter : {lat: 48.8534, lng: 2.3488},  //par default localisation de Paris
+            restaurantLocation : [],
         }
     }
 
     componentDidMount() {
         this.setLocation();
+        this.setRestaurantLocation();
     }
 
     setLocation(){
@@ -29,6 +31,12 @@ class Maps extends Component{
             });
         })
     }}
+
+    setRestaurantLocation(){
+        let tabR = [];
+        this.state.tabRestaurant.map(x=> tabR.push({lat:x.lat,lng:x.long}));
+        this.setState({restaurantLocation : tabR});
+    }
 
     render() {
         const containerStyle = {
@@ -48,6 +56,13 @@ class Maps extends Component{
                         position={this.state.locationCenter}
                         icon={require("./resource/img/icons8-home-address-64.png")}
                     />
+                    {this.state.restaurantLocation.map((x,index) =>
+                        <Marker
+                            key={index}
+                            position={x}
+                            icon={require("./resource/img/icons8-tableware-64.png")}
+                        />
+                    )}
 
                 </GoogleMap>
             </LoadScript>
