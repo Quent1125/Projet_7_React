@@ -38,7 +38,7 @@ class Restaurant extends Component{
                <p>
                    {this.state.address}
                    <img  alt="etoiles" src={require("./resource/img/5star.png")}/><br />
-                   <button className={this.state.name} onClick={this.handleShow}>En voir plus</button>
+                   <Button variant="outline-primary" className={this.state.name} onClick={this.handleShow}>En voir plus</Button>
                </p>
                <Modal show={this.state.showInfo} onHide={this.handleClose}>
                    <Modal.Header closeButton>
