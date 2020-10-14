@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Maps from './map'
-import Liste from "./liste";
-import data from "./resource/restaurant.json";
+import App from "./App";
 import registerServiceWorker from './registerServiceWorker'
 
 import './index.css'
@@ -12,6 +10,5 @@ import './index.css'
 
 
 
-ReactDOM.render(<Maps data={data} />, document.getElementById('map'))
-ReactDOM.render(<Liste data={data} />, document.getElementById('list'))
+ReactDOM.render(<App />, document.getElementById('box'))
 registerServiceWorker()

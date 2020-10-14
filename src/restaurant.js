@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/cjs/Button";
-import {GoogleMap, LoadScript, StreetViewPanorama} from "@react-google-maps/api";
+import {GoogleMap, StreetViewPanorama} from "@react-google-maps/api";
 import {Accordion, AccordionCollapse, AccordionToggle, FormGroup, FormLabel} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
@@ -19,11 +19,13 @@ class Restaurant extends Component{
                 lat:this.props.lat,
                 lng:this.props.lng,
             },
-            newratings : {
-                star:0,
-                comment:""
+            new : {
+                stars:undefined,
+                comment:undefined
             }
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.addNewRatings = this.addNewRatings.bind(this);
     }
 
     handleClose = () => this.setState({showInfo:false});
@@ -31,22 +33,33 @@ class Restaurant extends Component{
 
     handleShow = () => this.setState({showInfo:true});
 
-    /*addNewRatings(){
+    addNewRatings(){
+        if ((this.state.new.comment !== undefined) && (this.state.new.star !== undefined)){
+            let tbR = this.state.ratings
+            tbR.push(this.state.new)
+            this.setState({ratings : {tbR}})
+        }
+    }
 
-    }*/
-    /*handleChange(event) {
-        const s = event.target.type === 'select-one' ? event.target.value;
-        const co = event.target.value;
 
-        this.setState({
-            newratings : {
-                star: {s},
-                comment : {co}
-            }
-        })
-        console.log(this.state.newratings)
+    handleChange(event) {
+        if (event.target.type === 'select-one'){
+             let s =  event.target.value;
+            this.setState({new: {
+                    stars: parseInt(s),
+                    comment : this.state.new.comment
+                }
+            })
+        }else if (event.target.type === 'textarea'){
+             let co = event.target.value;
+            this.setState({new: {
+                    stars : this.state.new.stars,
+                    comment : co
+                }
+            })
+        }
 
-    }*/
+    }
 
     render() {
         const mapContainerStyle = {
@@ -93,12 +106,12 @@ class Restaurant extends Component{
                                        <FormLabel>Commentaire:</FormLabel>
                                        <Form.Control as="textarea" rows="2"  onChange={this.handleChange}/>
                                    </FormGroup>
-                                   <Button variant="success">Ajouter</Button>
+                                   <Button variant="success" onClick={this.addNewRatings}>Ajouter</Button>
                                </Form>
                            </AccordionCollapse>
                        </Accordion> <br/>
 
-                       <LoadScript googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY">
+
 
                            <GoogleMap
                                mapContainerStyle={mapContainerStyle}
@@ -110,7 +123,8 @@ class Restaurant extends Component{
                                    visible={true}
                                />
                            </GoogleMap>
-                       </LoadScript>
+
+
                    </Modal.Body>
                    <Modal.Footer>
                        <Button variant="secondary" onClick={this.handleClose}>

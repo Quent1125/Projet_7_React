@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { GoogleMap, LoadScript, Marker, DrawingManager } from '@react-google-maps/api';
+import { GoogleMap,  Marker, DrawingManager } from '@react-google-maps/api';
 
 
 
@@ -11,27 +11,17 @@ class Maps extends Component{
         super(props);
         this.state = {
             tabRestaurant : this.props.data,
-            locationCenter : {lat: 48.8534, lng: 2.3488},  //par default localisation de Paris
+            locationCenter : this.props.location,
             restaurantLocation : [],
-            lib : ['drawing']
+
         }
     }
 
     componentDidMount() {
-        this.setLocation();
         this.setRestaurantLocation();
     }
 
-    setLocation(){
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                this.setState( {locationCenter: {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                }
-            });
-        })
-    }}
+
 
     setRestaurantLocation(){
         let tabR = [];
@@ -47,11 +37,13 @@ class Maps extends Component{
             height: '685px'
         }
 
+
+        const onMakerComplete = marker => {
+            console.log(marker.getPosition().lat(),marker.getPosition().lng())
+        }
+
         return (
-            <LoadScript
-                googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
-                libraries={this.state.lib}
-            >
+
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={this.state.locationCenter}
@@ -69,6 +61,8 @@ class Maps extends Component{
                         />
                     )}
                     {<DrawingManager
+
+                        onMarkerComplete= {onMakerComplete}
                         options = {
                             {
                                 drawingMode:"marker",
@@ -81,7 +75,7 @@ class Maps extends Component{
                     />}
 
                 </GoogleMap>
-            </LoadScript>
+
         )
     }
 
