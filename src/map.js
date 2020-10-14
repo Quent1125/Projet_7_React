@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, DrawingManager } from '@react-google-maps/api';
 
 
 
@@ -13,6 +13,7 @@ class Maps extends Component{
             tabRestaurant : this.props.data,
             locationCenter : {lat: 48.8534, lng: 2.3488},  //par default localisation de Paris
             restaurantLocation : [],
+            lib : ['drawing']
         }
     }
 
@@ -38,14 +39,18 @@ class Maps extends Component{
         this.setState({restaurantLocation : tabR});
     }
 
+
+
     render() {
         const containerStyle = {
             width: '1250px',
             height: '685px'
         }
+
         return (
             <LoadScript
                 googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
+                libraries={this.state.lib}
             >
                 <GoogleMap
                     mapContainerStyle={containerStyle}
@@ -63,6 +68,17 @@ class Maps extends Component{
                             icon={require("./resource/img/icons8-tableware-64.png")}
                         />
                     )}
+                    {<DrawingManager
+                        options = {
+                            {
+                                drawingMode:"marker",
+                                drawingControl: false,
+                                markerOptions: {
+                                    icon: require("./resource/img/icons8-tableware-64.png")
+                                },
+                            }
+                        }
+                    />}
 
                 </GoogleMap>
             </LoadScript>

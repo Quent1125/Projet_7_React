@@ -17,7 +17,7 @@ class Liste extends Component{
     render() {
         return(
             <>
-                <h2>Liste des restaurant</h2><br />
+                <h2>Les restaurant</h2><br />
                 <Trie restaurant={this.state.restaurantList}/>
             </>
         )

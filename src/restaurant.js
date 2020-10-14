@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/cjs/Button";
 import {GoogleMap, LoadScript, StreetViewPanorama} from "@react-google-maps/api";
+import {Accordion, AccordionCollapse, AccordionToggle, FormGroup, FormLabel} from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 
 class Restaurant extends Component{
@@ -17,6 +19,10 @@ class Restaurant extends Component{
                 lat:this.props.lat,
                 lng:this.props.lng,
             },
+            newratings : {
+                star:0,
+                comment:""
+            }
         }
     }
 
@@ -25,12 +31,27 @@ class Restaurant extends Component{
 
     handleShow = () => this.setState({showInfo:true});
 
+    /*addNewRatings(){
 
+    }*/
+    /*handleChange(event) {
+        const s = event.target.type === 'select-one' ? event.target.value;
+        const co = event.target.value;
+
+        this.setState({
+            newratings : {
+                star: {s},
+                comment : {co}
+            }
+        })
+        console.log(this.state.newratings)
+
+    }*/
 
     render() {
         const mapContainerStyle = {
             height: "400px",
-            width: "800px"
+            width: "750px"
         };
        return(
            <div id="case" >
@@ -40,21 +61,46 @@ class Restaurant extends Component{
                    <img  alt="etoiles" src={require("./resource/img/5star.png")}/><br />
                    <Button variant="outline-primary" className={this.state.name} onClick={this.handleShow}>En voir plus</Button>
                </p>
-               <Modal show={this.state.showInfo} onHide={this.handleClose}>
+               <Modal show={this.state.showInfo} onHide={this.handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                    <Modal.Header closeButton>
                        <Modal.Title>{this.state.name}</Modal.Title>
                    </Modal.Header>
-                   <Modal.Body>
-                       {this.state.ratings.map((x,index) =>
-                           <ul key={index}>
-                               <li>Note : {x.stars} sur 5 </li>
-                               <li>Commentaire : {x.comment}</li>
-                           </ul>
-                       )}
+                   <Modal.Body >
+                       <h1>Avis :</h1>
+                       <div id="boxRatings">
+                           {this.state.ratings.map((x,index) =>
+                               <ul key={index}>
+                                   <li><img key={index} id="littleStar" alt="étoiles" src={require(`./resource/img/${x.stars}star.png`)}   /> <br />
+                                       {x.comment}</li>
+                               </ul>
+                           )}
+                       </div><br/>
+
+                       <Accordion>
+                           <AccordionToggle as={Button} variant="primary" eventKey="0">Ajouter un avis</AccordionToggle>
+                           <AccordionCollapse eventKey="0">
+                               <Form>
+                                   <FormGroup>
+                                       <FormLabel>Note : </FormLabel>
+                                       <Form.Control as="select"  custom className="min"  onChange={this.handleChange}>
+                                           <option value={0}>0</option>
+                                           <option value={1}>1</option>
+                                           <option value={2}>2</option>
+                                           <option value={3}>3</option>
+                                           <option value={4}>4</option>
+                                           <option value={5}>5</option>
+                                       </Form.Control>
+                                       <FormLabel>Commentaire:</FormLabel>
+                                       <Form.Control as="textarea" rows="2"  onChange={this.handleChange}/>
+                                   </FormGroup>
+                                   <Button variant="success">Ajouter</Button>
+                               </Form>
+                           </AccordionCollapse>
+                       </Accordion> <br/>
+
                        <LoadScript googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY">
 
                            <GoogleMap
-                               id="circle-example"
                                mapContainerStyle={mapContainerStyle}
                                zoom={7}
                                center={this.state.location}

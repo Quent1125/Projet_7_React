@@ -29,12 +29,10 @@ class Trie extends Component{
         if (word[0]==="max"){
             if (event.target.value >= this.state.valueMin){
                 this.setState({valueMax:event.target.value});
-                this.trieRestaurant();
             }
         }else if (word[0] === "min"){
             if (event.target.value <= this.state.valueMax){
                 this.setState({valueMin:event.target.value});
-                this.trieRestaurant();
             }
         }else {
             alert("Erreur dans le select")
@@ -45,6 +43,7 @@ class Trie extends Component{
         let tabR = this.state.restaurant.filter(x => (this.state.valueMax>= this.averageStars(x.ratings)) && ((this.averageStars(x.ratings)) >=this.state.valueMin))
         this.setState({restaurantTrie:tabR})
     }
+
 
 
     render() {
