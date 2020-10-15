@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { LoadScript } from '@react-google-maps/api';
 import Maps from './map'
-import Trie from "./tri";
+import Liste from './liste'
 import data from "./resource/restaurant.json"
 
 
@@ -64,8 +64,7 @@ class App extends Component{
                     libraries={this.state.lib}
                 >
                     <div id="list">
-                        <h2>Les restaurant</h2><br />
-                        <Trie restaurant={this.state.data}/>
+                        <Liste restaurant={this.state.data} />
                     </div>
 
                     <div id="map"><Maps data={this.state.data} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>

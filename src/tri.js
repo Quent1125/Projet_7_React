@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Restaurant from "./restaurant";
 import Button from "react-bootstrap/cjs/Button";
 import Form from 'react-bootstrap/Form'
 import {Accordion, AccordionCollapse, AccordionToggle, FormGroup} from "react-bootstrap";
@@ -9,31 +8,22 @@ class Trie extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            restaurant : this.props.restaurant,
-            restaurantTri : this.props.restaurant,
+            //restaurant : this.props.restaurant,
             valueMax : 5,
             valueMin : 0,
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
-    averageStars(ratings){
-        let average = 0;
-        ratings.map( x => average += x.stars);
-        average =  average/(ratings.length);
-        console.log(average)
-        return(average)
-    }
-
     handleChange(event) {
         let word = event.target.className.split(" ")
         if (word[0]==="max"){
             if (event.target.value >= this.state.valueMin){
-                this.setState({valueMax:event.target.value},this.triRestaurant);
+                this.setState({valueMax:event.target.value},this.props.tri(this.state.valueMax,this.state.valueMin));
             }
         }else if (word[0] === "min"){
             if (event.target.value <= this.state.valueMax){
-                this.setState({valueMin:event.target.value},this.triRestaurant);
+                this.setState({valueMin:event.target.value},this.props.tri(this.state.valueMax,this.state.valueMin));
 
             }
         }else {
@@ -41,12 +31,6 @@ class Trie extends Component{
         }
     }
 
-    triRestaurant(){
-        let tabR = this.state.restaurant.filter(x => (this.state.valueMax>= this.averageStars(x.ratings)) && ((this.averageStars(x.ratings)) >=this.state.valueMin))
-        console.log(this.state.valueMax)
-        console.log(this.state.valueMin)
-        this.setState({restaurantTri:tabR})
-    }
 
 
 
@@ -81,11 +65,7 @@ class Trie extends Component{
                     </AccordionCollapse>
                 </Accordion>
 
-                <div id="tableList">
-                    {this.state.restaurantTri.map( (x,index) =>
-                        <Restaurant key={index} name = {x.restaurantName} address= {x.address}  ratings={x.ratings} lat={x.lat} lng={x.long} />
-                    )}
-                </div>
+
             </>
         )
 
