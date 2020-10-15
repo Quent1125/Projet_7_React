@@ -12,7 +12,7 @@ import Form from "react-bootstrap/Form";
 class Maps extends Component{
 
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             tabRestaurant : this.props.data,
             locationCenter : this.props.location,
@@ -28,17 +28,17 @@ class Maps extends Component{
             }
 
         }
-        this.handleSend = this.handleSend.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSend = this.handleSend.bind(this)
+        this.handleChange = this.handleChange.bind(this)
 
 
     }
 
     componentDidMount() {
-        this.setRestaurantLocation();
+        this.setRestaurantLocation()
     }
 
-    handleClose = () => this.setState({showAdd:false});
+    handleClose = () => this.setState({showAdd:false})
 
 
     handleShow = marker => {
@@ -59,7 +59,7 @@ class Maps extends Component{
 
     handleChange(event) {
         if (event.target.name === 'name'){
-            let s =  event.target.value;
+            let s =  event.target.value
             this.setState({
                 newR : {
                     restaurantName:s,
@@ -70,7 +70,7 @@ class Maps extends Component{
                 }
             })
         }else if (event.target.name === 'address'){
-            let co = event.target.value;
+            let co = event.target.value
             this.setState({
                 newR : {
                     restaurantName:this.state.newR.restaurantName,
@@ -94,9 +94,9 @@ class Maps extends Component{
 
 
     setRestaurantLocation(){
-        let tabR = [];
-        this.state.tabRestaurant.map(x=> tabR.push({lat:x.lat,lng:x.long}));
-        this.setState({restaurantLocation : tabR});
+        let tabR = []
+        this.state.tabRestaurant.map(x=> tabR.push({lat:x.lat,lng:x.long}))
+        this.setState({restaurantLocation : tabR})
     }
 
 
@@ -107,15 +107,14 @@ class Maps extends Component{
             width: '1250px',
             height: '685px'
         }
-        console.log("map")
-        console.log(this.state.locationCenter)
+
 
         return (
             <div>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={this.state.locationCenter}
-                    zoom={14}
+                    zoom={13}
                 >
                     <Marker
                         position={this.state.locationCenter}

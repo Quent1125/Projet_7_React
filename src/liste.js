@@ -22,7 +22,7 @@ class Liste extends Component{
 
 
     triRestaurant(max,min){
-        let tabR = this.state.restaurant.filter(x => (max>= this.averageStars(x.ratings)) && ((this.averageStars(x.ratings)) >=min))
+        let tabR = this.state.restaurant.filter(x => (max>= x.average) && (x.average >=min))
         this.setState({restaurantTri:tabR})
     }
 
@@ -34,6 +34,7 @@ class Liste extends Component{
                 <h2>Les restaurant</h2><br />
                 <Trie tri={this.triRestaurant} />
                 <div id="tableList">
+
                     {this.state.restaurantTri.map( (x,index) =>
                         <Restaurant key={index} name = {x.restaurantName} address= {x.address}  ratings={x.ratings} lat={x.lat} lng={x.long} />
                     )}

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { LoadScript } from '@react-google-maps/api';
 import Maps from './map'
 import Liste from './liste'
-import data from "./resource/restaurant.json"
 
 
 class App extends Component{
@@ -11,8 +10,7 @@ class App extends Component{
         this.state ={
             userLocation : {lat: 48.8534, lng: 2.3488},
             lib : ['drawing'],
-            data: data,
-            dataTest: undefined,
+            data: [],
             newR: {}
         }
 
@@ -21,22 +19,81 @@ class App extends Component{
 
     componentDidMount() {
         this.setLocation();
-        //this.setData();
+        this.setData();
+
+
     }
 
-   /*setData(){
+
+
+   setData(){
+        let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&radius=5000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
+       let tab2 =[]
+       let tab3 = []
+       //let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&radius=10000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
+       fetch(url2)
+           .then(function (response){
+               return response.json()
+           }).then(function (data){
+               let tab1 = data.results
+               tab1.map(x =>
+                   tab2.push({
+                       place_id : x.place_id,
+                       restaurantName: x.name,
+                       address: x.vicinity,
+                       lat: x.geometry.location.lat,
+                       long: x.geometry.location.lng,
+                       ratings:[],
+                       average: x.rating,
+                   })
+               );
+               tab2.forEach( e => {
+                   let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
+                   fetch(url3)
+                       .then(function (response){
+                           return response.json()
+                       }).then(function (data){
+                           if (data.result.reviews !== undefined){
+                               data.result.reviews.map(x =>
+                                   tab3.push({
+                                       stars: x.rating,
+                                       comment: x.text,
+                                   })
+                               );
+                               e.ratings = tab3;
+                           }
+                       });
+               })
+               console.log(tab2)
+
+
+       })
+       this.setState({data : tab2})
+
+
+
+    }
+
+
+    setRatings(id){
+        console.log(id)
         var request = new XMLHttpRequest();
-        let tabD = [];
+        let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
+        let tabD = []
         request.onreadystatechange = function() {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                tabD = JSON.parse(this.responseText);
+               JSON.parse(this.responseText).result.reviews.map(x =>
+                    tabD.push({
+                        stars: x.rating,
+                        comment: x.text,
+                    })
+                )
             }
         };
-        this.setState({dataTest : {tabD}})
-        console.log(this.state.dataTest)
-        request.open("GET", "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&radius=10000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY");
+        request.open("GET", url );
         request.send();
-    }*/
+        return tabD
+    }
 
     setLocation(){
         if (navigator.geolocation) {
@@ -48,18 +105,19 @@ class App extends Component{
                 });
 
             })
+
         }
+
     }
 
     addRestaurant(newR){
-        let tabR = this.state.data;
-        tabR.push(newR);
+        let tabR = this.state.data
+        tabR.push(newR)
         this.setState({data : tabR})
     }
 
     render() {
-        console.log("App")
-        console.log(this.state.userLocation)
+
         return(
             <>
                 <LoadScript

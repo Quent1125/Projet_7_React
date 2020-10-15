@@ -34,14 +34,14 @@ h1,h2,h3{
 }
 
 #list{
-    width: 25%;
+    width: 500px;
     margin-left: 5%;
     text-align: justify;
 
 }
 
 #tableList{
-    height: 70%;
+    height: 750px;
     overflow: auto;
 }
 
