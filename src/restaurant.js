@@ -71,7 +71,7 @@ class Restaurant extends Component{
            <div id="case" >
                <h3>{this.state.name}</h3>
                <p>
-                   {this.state.address}
+                   {this.state.address}<br/>
                    <img  alt="etoiles" src={require("./resource/img/5star.png")}/><br />
                    <Button variant="outline-primary" className={this.state.name} onClick={this.handleShow}>En voir plus</Button>
                </p>

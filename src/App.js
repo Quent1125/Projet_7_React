@@ -11,8 +11,11 @@ class App extends Component{
         this.state ={
             userLocation : {lat: 48.8534, lng: 2.3488},
             lib : ['drawing'],
-            data: []
+            data: data,
+            newR: {}
         }
+
+        this.addRestaurant = this.addRestaurant.bind(this)
     }
 
     componentDidMount() {
@@ -46,7 +49,12 @@ class App extends Component{
         }
     }
 
-    addRestaurant
+    addRestaurant(newR){
+        let tabR = this.state.data;
+        tabR.push(newR);
+        console.log(tabR)
+        this.setState({data : tabR})
+    }
 
     render() {
         return(
@@ -57,10 +65,10 @@ class App extends Component{
                 >
                     <div id="list">
                         <h2>Les restaurant</h2><br />
-                        <Trie restaurant={data}/>
+                        <Trie restaurant={this.state.data}/>
                     </div>
 
-                    <div id="map"><Maps data={data} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>
+                    <div id="map"><Maps data={this.state.data} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>
 
 
                 </LoadScript>
