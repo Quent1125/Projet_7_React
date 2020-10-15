@@ -34,10 +34,11 @@ class Restaurant extends Component{
     handleShow = () => this.setState({showInfo:true});
 
     addNewRatings(){
-        if ((this.state.new.comment !== undefined) && (this.state.new.star !== undefined)){
+        if ((this.state.new.comment !== undefined) && (this.state.new.stars !== undefined)){
+            console.log("test2")
             let tbR = this.state.ratings
             tbR.push(this.state.new)
-            this.setState({ratings : {tbR}})
+            this.setState({ratings : tbR})
         }
     }
 

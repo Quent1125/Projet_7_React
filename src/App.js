@@ -57,7 +57,7 @@ class App extends Component{
                         <Trie restaurant={data}/>
                     </div>
 
-                    <div id="map"><Maps data={data} location={this.state.userLocation} /></div>
+                    <div id="map"><Maps data={data} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>
 
 
                 </LoadScript>

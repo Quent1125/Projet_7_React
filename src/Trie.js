@@ -21,6 +21,7 @@ class Trie extends Component{
         let average = 0;
         ratings.map( x => average += x.stars);
         average =  average/(ratings.length);
+        console.log(average)
         return(average)
     }
 
@@ -28,11 +29,12 @@ class Trie extends Component{
         let word = event.target.className.split(" ")
         if (word[0]==="max"){
             if (event.target.value >= this.state.valueMin){
-                this.setState({valueMax:event.target.value});
+                this.setState({valueMax:event.target.value},this.trieRestaurant);
             }
         }else if (word[0] === "min"){
             if (event.target.value <= this.state.valueMax){
-                this.setState({valueMin:event.target.value});
+                this.setState({valueMin:event.target.value},this.trieRestaurant);
+
             }
         }else {
             alert("Erreur dans le select")
@@ -41,6 +43,8 @@ class Trie extends Component{
 
     trieRestaurant(){
         let tabR = this.state.restaurant.filter(x => (this.state.valueMax>= this.averageStars(x.ratings)) && ((this.averageStars(x.ratings)) >=this.state.valueMin))
+        console.log(this.state.valueMax)
+        console.log(this.state.valueMin)
         this.setState({restaurantTrie:tabR})
     }
 
