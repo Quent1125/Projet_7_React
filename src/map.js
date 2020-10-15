@@ -81,7 +81,6 @@ class Maps extends Component{
                 }
             })
         }
-        console.log(this.state.newR)
     }
 
     handleSend(){
@@ -108,7 +107,8 @@ class Maps extends Component{
             width: '1250px',
             height: '685px'
         }
-
+        console.log("map")
+        console.log(this.state.locationCenter)
 
         return (
             <div>

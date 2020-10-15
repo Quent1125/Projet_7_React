@@ -12,6 +12,7 @@ class App extends Component{
             userLocation : {lat: 48.8534, lng: 2.3488},
             lib : ['drawing'],
             data: data,
+            dataTest: undefined,
             newR: {}
         }
 
@@ -23,7 +24,7 @@ class App extends Component{
         //this.setData();
     }
 
-   /* setData(){
+   /*setData(){
         var request = new XMLHttpRequest();
         let tabD = [];
         request.onreadystatechange = function() {
@@ -31,9 +32,9 @@ class App extends Component{
                 tabD = JSON.parse(this.responseText);
             }
         };
-        this.setState({data : {tabD}})
-        console.log(this.state.data)
-        request.open("GET", "https://www.prevision-meteo.ch/services/json/paris");
+        this.setState({dataTest : {tabD}})
+        console.log(this.state.dataTest)
+        request.open("GET", "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&radius=10000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY");
         request.send();
     }*/
 
@@ -45,6 +46,7 @@ class App extends Component{
                         lng: position.coords.longitude
                     }
                 });
+
             })
         }
     }
@@ -52,11 +54,12 @@ class App extends Component{
     addRestaurant(newR){
         let tabR = this.state.data;
         tabR.push(newR);
-        console.log(tabR)
         this.setState({data : tabR})
     }
 
     render() {
+        console.log("App")
+        console.log(this.state.userLocation)
         return(
             <>
                 <LoadScript

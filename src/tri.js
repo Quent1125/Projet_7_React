@@ -19,11 +19,11 @@ class Trie extends Component{
         let word = event.target.className.split(" ")
         if (word[0]==="max"){
             if (event.target.value >= this.state.valueMin){
-                this.setState({valueMax:event.target.value},this.props.tri(this.state.valueMax,this.state.valueMin));
+                this.setState({valueMax:event.target.value},() => this.props.tri(this.state.valueMax,this.state.valueMin));
             }
         }else if (word[0] === "min"){
             if (event.target.value <= this.state.valueMax){
-                this.setState({valueMin:event.target.value},this.props.tri(this.state.valueMax,this.state.valueMin));
+                this.setState({valueMin:event.target.value},() => this.props.tri(this.state.valueMax,this.state.valueMin));
 
             }
         }else {
