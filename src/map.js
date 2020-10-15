@@ -65,19 +65,18 @@ class Maps extends Component{
                     restaurantName:s,
                     address:this.state.newR.address,
                     lat:this.state.newR.lat,
-                    long:this.state.newR.lng,
+                    long:this.state.newR.long,
                     ratings:this.state.newR.ratings
                 }
             })
         }else if (event.target.name === 'address'){
-            console.log("test1")
             let co = event.target.value;
             this.setState({
                 newR : {
                     restaurantName:this.state.newR.restaurantName,
                     address:co,
                     lat:this.state.newR.lat,
-                    long:this.state.newR.lng,
+                    long:this.state.newR.long,
                     ratings:this.state.newR.ratings
                 }
             })
