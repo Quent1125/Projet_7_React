@@ -13,12 +13,7 @@ class Liste extends Component{
         this.triRestaurant = this.triRestaurant.bind(this)
     }
 
-    averageStars(ratings){
-        let average = 0;
-        ratings.map( x => average += x.stars);
-        average =  average/(ratings.length);
-        return(average)
-    }
+
 
 
     triRestaurant(max,min){

@@ -29,7 +29,6 @@ class App extends Component{
    setData(){
         let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&radius=5000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
        let tab2 =[]
-       let tab3 = []
        //let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&radius=10000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
        fetch(url2)
            .then(function (response){
@@ -53,6 +52,7 @@ class App extends Component{
                        .then(function (response){
                            return response.json()
                        }).then(function (data){
+                           let tab3 = [];
                            if (data.result.reviews !== undefined){
                                data.result.reviews.map(x =>
                                    tab3.push({
