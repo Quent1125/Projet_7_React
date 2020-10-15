@@ -10,7 +10,7 @@ class Trie extends Component{
         super(props);
         this.state = {
             restaurant : this.props.restaurant,
-            restaurantTrie : this.props.restaurant,
+            restaurantTri : this.props.restaurant,
             valueMax : 5,
             valueMin : 0,
         }
@@ -29,11 +29,11 @@ class Trie extends Component{
         let word = event.target.className.split(" ")
         if (word[0]==="max"){
             if (event.target.value >= this.state.valueMin){
-                this.setState({valueMax:event.target.value},this.trieRestaurant);
+                this.setState({valueMax:event.target.value},this.triRestaurant);
             }
         }else if (word[0] === "min"){
             if (event.target.value <= this.state.valueMax){
-                this.setState({valueMin:event.target.value},this.trieRestaurant);
+                this.setState({valueMin:event.target.value},this.triRestaurant);
 
             }
         }else {
@@ -41,11 +41,11 @@ class Trie extends Component{
         }
     }
 
-    trieRestaurant(){
+    triRestaurant(){
         let tabR = this.state.restaurant.filter(x => (this.state.valueMax>= this.averageStars(x.ratings)) && ((this.averageStars(x.ratings)) >=this.state.valueMin))
         console.log(this.state.valueMax)
         console.log(this.state.valueMin)
-        this.setState({restaurantTrie:tabR})
+        this.setState({restaurantTri:tabR})
     }
 
 
@@ -54,7 +54,7 @@ class Trie extends Component{
         return (
             <>
                 <Accordion>
-                    <AccordionToggle as={Button} variant="primary" eventKey="0">Trie</AccordionToggle>
+                    <AccordionToggle as={Button} variant="primary" eventKey="0">Tri</AccordionToggle>
                     <AccordionCollapse eventKey="0">
                         <Form>
                             <FormGroup>
@@ -82,7 +82,7 @@ class Trie extends Component{
                 </Accordion>
 
                 <div id="tableList">
-                    {this.state.restaurantTrie.map( (x,index) =>
+                    {this.state.restaurantTri.map( (x,index) =>
                         <Restaurant key={index} name = {x.restaurantName} address= {x.address}  ratings={x.ratings} lat={x.lat} lng={x.long} />
                     )}
                 </div>

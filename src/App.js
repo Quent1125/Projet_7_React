@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { LoadScript } from '@react-google-maps/api';
 import Maps from './map'
-import Trie from "./Trie";
+import Trie from "./tri";
 import data from "./resource/restaurant.json"
 
 
@@ -43,7 +43,10 @@ class App extends Component{
                     }
                 });
             })
-        }}
+        }
+    }
+
+    addRestaurant
 
     render() {
         return(
