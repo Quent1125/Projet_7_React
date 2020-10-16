@@ -31,7 +31,7 @@ class Liste extends Component{
                 <div id="tableList">
 
                     {this.state.restaurantTri.map( (x,index) =>
-                        <Restaurant key={index} name = {x.restaurantName} address= {x.address}  ratings={x.ratings} lat={x.lat} lng={x.long} />
+                        <Restaurant key={index} name = {x.restaurantName} address= {x.address}  ratings={x.ratings} lat={x.lat} lng={x.long}  average={x.average}/>
                     )}
                 </div>
 

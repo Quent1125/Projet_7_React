@@ -27,7 +27,7 @@ class App extends Component{
 
 
    setData(){
-        let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&radius=5000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
+        let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
        let tab2 =[]
        //let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&radius=10000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
        fetch(url2)
@@ -75,25 +75,6 @@ class App extends Component{
     }
 
 
-    setRatings(id){
-        console.log(id)
-        var request = new XMLHttpRequest();
-        let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
-        let tabD = []
-        request.onreadystatechange = function() {
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-               JSON.parse(this.responseText).result.reviews.map(x =>
-                    tabD.push({
-                        stars: x.rating,
-                        comment: x.text,
-                    })
-                )
-            }
-        };
-        request.open("GET", url );
-        request.send();
-        return tabD
-    }
 
     setLocation(){
         if (navigator.geolocation) {

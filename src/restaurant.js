@@ -19,6 +19,7 @@ class Restaurant extends Component{
                 lat:this.props.lat,
                 lng:this.props.lng,
             },
+            average : this.props.average,
             new : {
                 stars:undefined,
                 comment:undefined
@@ -62,17 +63,29 @@ class Restaurant extends Component{
 
     }
 
+    defStar(){
+        let a = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5]
+        if (a.includes(this.state.average)  ){
+            return this.state.average
+        }else if (isNaN(this.state.average)){
+            return 0
+        } else {
+            return Math.round(this.state.average)
+        }
+    }
+
     render() {
         const mapContainerStyle = {
             height: "400px",
             width: "750px"
         };
+        let av = this.defStar()
        return(
            <div id="case" >
                <h3>{this.state.name}</h3>
                <p>
                    {this.state.address}<br/>
-                   <img  alt="etoiles" src={require("./resource/img/5star.png")}/><br />
+                   <img  alt="etoiles" src={require(`./resource/img/${av}star.png`)}/><br />
                    <Button variant="outline-primary" className={this.state.name} onClick={this.handleShow}>En voir plus</Button>
                </p>
                <Modal show={this.state.showInfo} onHide={this.handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>

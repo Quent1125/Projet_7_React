@@ -116,17 +116,21 @@ class Maps extends Component{
                     center={this.state.locationCenter}
                     zoom={13}
                 >
-                    <Marker
-                        position={this.state.locationCenter}
-                        icon={require("./resource/img/icons8-home-address-64.png")}
-                    />
+
                     {this.state.restaurantLocation.map((x,index) =>
                         <Marker
                             key={index}
                             position={x}
+                            zIndex={index}
                             icon={require("./resource/img/icons8-tableware-64.png")}
                         />
-                    )}
+                        )
+                    }
+                    <Marker
+                        position={this.state.locationCenter}
+                        icon={require("./resource/img/icons8-home-address-64.png")}
+                        zIndex={this.state.tabRestaurant.length} //permet de placer le marker au dessus des autres
+                    />
                     <DrawingManager
 
                         onMarkerComplete= {this.handleShow}
