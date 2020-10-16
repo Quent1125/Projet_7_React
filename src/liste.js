@@ -16,6 +16,7 @@ class Liste extends Component{
 
 
 
+
     triRestaurant(max,min){
         let tabR = this.state.restaurant.filter(x => (max>= x.average) && (x.average >=min))
         this.setState({restaurantTri:tabR})
