@@ -31,43 +31,49 @@ class App extends Component{
        let tab2 =[]
        //let url = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&radius=10000&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
        fetch(url2)
-           .then(function (response){
-               return response.json()
-           }).then(function (data){
-               let tab1 = data.results
-               tab1.map(x =>
-                   tab2.push({
-                       place_id : x.place_id,
-                       restaurantName: x.name,
-                       address: x.vicinity,
-                       lat: x.geometry.location.lat,
-                       long: x.geometry.location.lng,
-                       ratings:[],
-                       average: x.rating,
-                   })
-               );
-               tab2.forEach( e => {
-                   let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
-                   fetch(url3)
-                       .then(function (response){
-                           return response.json()
-                       }).then(function (data){
-                           let tab3 = [];
-                           if (data.result.reviews !== undefined){
-                               data.result.reviews.map(x =>
-                                   tab3.push({
-                                       stars: x.rating,
-                                       comment: x.text,
-                                   })
-                               );
-                               e.ratings = tab3;
-                           }
-                       });
-               })
-
-
-
+       .then(function (response){
+           return response.json()
        })
+       .then(function (data){
+           let tab1 =  data.results
+           tab1.map(x =>
+               tab2.push({
+                   place_id : x.place_id,
+                   restaurantName: x.name,
+                   address: x.vicinity,
+                   lat: x.geometry.location.lat,
+                   long: x.geometry.location.lng,
+                   ratings:[],
+                   average: x.rating,
+               })
+           );
+           tab2.forEach( e => {
+               let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
+               fetch(url3)
+               .then(function (response){
+                   return response.json()
+               })
+               .then(function (data){
+                   let tab3 = [];
+                   if (data.result.reviews !== undefined){
+                       data.result.reviews.map(x =>
+                           tab3.push({
+                               stars: x.rating,
+                               comment: x.text,
+                           })
+                       );
+                       e.ratings = tab3;
+                   }
+               })
+               .catch(function (error){
+                    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+               });
+           })
+       })
+       .catch(function (error){
+           console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+       });
+
        this.setState({data : tab2})
 
 
