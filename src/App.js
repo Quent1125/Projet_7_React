@@ -64,7 +64,7 @@ class App extends Component{
                            }
                        });
                })
-               console.log(tab2)
+
 
 
        })
@@ -98,7 +98,7 @@ class App extends Component{
     }
 
     render() {
-
+    console.log("render app")
         return(
             <>
                 <LoadScript

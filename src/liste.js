@@ -18,13 +18,18 @@ class Liste extends Component{
 
 
     triRestaurant(max,min){
+        console.log("tri")
+        console.log(this.state.restaurantTri)
         let tabR = this.state.restaurant.filter(x => (max>= x.average) && (x.average >=min))
         this.setState({restaurantTri:tabR})
+
     }
 
 
 
     render() {
+        console.log("render")
+        console.log(this.state.restaurantTri)
         return (
             <>
                 <h2>Les restaurant</h2><br />

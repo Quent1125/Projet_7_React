@@ -15,9 +15,7 @@ class Trie extends Component{
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
-        this.props.tri(this.state.valueMax,this.state.valueMin)
-    }
+
 
     handleChange(event) {
         let word = event.target.className.split(" ")
