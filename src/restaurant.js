@@ -39,7 +39,15 @@ class Restaurant extends Component{
             console.log("test2")
             let tbR = this.state.ratings
             tbR.push(this.state.new)
-            this.setState({ratings : tbR})
+            this.setState({
+                ratings : tbR,
+                new : {
+                    stars:undefined,
+                    comment:undefined
+                }
+            })
+            document.getElementById('selectStars').value = ""
+            document.getElementById('textComment').value = ""
         }
     }
 
@@ -109,7 +117,7 @@ class Restaurant extends Component{
                                <Form>
                                    <FormGroup>
                                        <FormLabel>Note : </FormLabel>
-                                       <Form.Control as="select"  custom className="min"  onChange={this.handleChange}>
+                                       <Form.Control as="select" id="selectStars"  custom className="min"  onChange={this.handleChange}>
                                            <option value={0}>0</option>
                                            <option value={1}>1</option>
                                            <option value={2}>2</option>
@@ -118,7 +126,7 @@ class Restaurant extends Component{
                                            <option value={5}>5</option>
                                        </Form.Control>
                                        <FormLabel>Commentaire:</FormLabel>
-                                       <Form.Control as="textarea" rows="2"  onChange={this.handleChange}/>
+                                       <Form.Control as="textarea" id="textComment" rows="2"  onChange={this.handleChange}/>
                                    </FormGroup>
                                    <Button variant="success" onClick={this.addNewRatings}>Ajouter</Button>
                                </Form>
