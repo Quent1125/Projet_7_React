@@ -107,7 +107,7 @@ class Maps extends Component{
             width: '1250px',
             height: '685px'
         }
-        console.log("render map")
+
 
         return (
             <div>

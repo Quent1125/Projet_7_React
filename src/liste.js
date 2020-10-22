@@ -6,7 +6,6 @@ class Liste extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            restaurant : this.props.restaurant,
             restaurantTri : this.props.restaurant,
 
         }
@@ -18,9 +17,8 @@ class Liste extends Component{
 
 
     triRestaurant(max,min){
-        console.log("tri")
-        console.log(this.state.restaurantTri)
-        let tabR = this.state.restaurant.filter(x => (max>= x.average) && (x.average >=min))
+
+        let tabR = this.props.restaurant.filter(x => (max>= x.average) && (x.average >=min))
         this.setState({restaurantTri:tabR})
 
     }
@@ -28,8 +26,7 @@ class Liste extends Component{
 
 
     render() {
-        console.log("render")
-        console.log(this.state.restaurantTri)
+
         return (
             <>
                 <h2>Les restaurant</h2><br />
