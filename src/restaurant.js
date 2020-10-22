@@ -25,8 +25,11 @@ class Restaurant extends Component{
                 comment:undefined
             }
         }
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this)
+        this.handleClose = this.handleClose.bind(this)
+        this.handleShow = this.handleShow.bind(this)
         this.addNewRatings = this.addNewRatings.bind(this);
+        this.defStar = this.defStar.bind(this)
     }
 
     handleClose = () => this.setState({showInfo:false});

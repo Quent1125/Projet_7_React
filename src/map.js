@@ -28,9 +28,10 @@ class Maps extends Component{
             }
 
         }
-        console.log(this.state.tabRestaurant)
         this.handleSend = this.handleSend.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleClose = this.handleClose.bind(this)
+        this.handleShow = this.handleShow.bind(this)
         this.setRestaurantLocation = this.setRestaurantLocation.bind(this)
 
 
