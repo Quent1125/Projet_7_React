@@ -30,9 +30,9 @@ class App extends Component{
 
 
    setData(){
-        //let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
+        let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.995266,4.0221984&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
        let tab2 =[]
-       let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
+       //let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
        fetch(url2)
        .then((response) => {
            return response.json()
@@ -50,7 +50,7 @@ class App extends Component{
                    average: x.rating,
                })
            );
-
+           this.setState({data : tab2})
            tab2.forEach( e => {
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
                fetch(url3)
@@ -72,7 +72,7 @@ class App extends Component{
                .catch(function (error){
                     console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
                });
-               this.setState({data : tab2})
+
            })
        })
        .catch(function (error){
@@ -110,7 +110,7 @@ class App extends Component{
 
     render() {
         return(
-            <>
+
                 <LoadScript
                     googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
                     libraries={this.state.lib}
@@ -123,7 +123,7 @@ class App extends Component{
 
 
                 </LoadScript>
-            </>
+
         )
     }
 }

@@ -28,14 +28,17 @@ class Maps extends Component{
             }
 
         }
+        console.log(this.state.tabRestaurant)
         this.handleSend = this.handleSend.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.setRestaurantLocation = this.setRestaurantLocation.bind(this)
 
 
     }
 
     componentDidMount() {
         this.setRestaurantLocation()
+
     }
 
     handleClose = () => this.setState({showAdd:false})
@@ -94,8 +97,10 @@ class Maps extends Component{
 
 
     setRestaurantLocation(){
-        let tabR = []
-        this.state.tabRestaurant.map(x=> tabR.push({lat:x.lat,lng:x.long}))
+        console.log(this.state.tabRestaurant[1])
+        let tabR = [];
+        this.state.tabRestaurant.forEach(x => tabR.push({lat:x.lat,lng:x.long}) )
+        console.log(tabR)
         this.setState({restaurantLocation : tabR})
     }
 
