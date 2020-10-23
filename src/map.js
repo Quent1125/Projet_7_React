@@ -98,10 +98,8 @@ class Maps extends Component{
 
 
     setRestaurantLocation(){
-        console.log(this.state.tabRestaurant[1])
         let tabR = [];
         this.state.tabRestaurant.forEach(x => tabR.push({lat:x.lat,lng:x.long}) )
-        console.log(tabR)
         this.setState({restaurantLocation : tabR})
     }
 
