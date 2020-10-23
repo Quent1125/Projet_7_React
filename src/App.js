@@ -57,7 +57,6 @@ class App extends Component{
                })
            );
            this.setState({data : tab2}, () => this.setRestaurantLocation())
-           console.log(this.state.data)
            tab2.forEach( e => {
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
                fetch(url3)
@@ -116,6 +115,7 @@ class App extends Component{
     }
 
     render() {
+        const {data, restaurantLocation, userLocation} = this.state
         return(
 
                 <LoadScript
@@ -123,10 +123,10 @@ class App extends Component{
                     libraries={this.state.lib}
                 >
                     <div id="list">
-                        <Liste restaurant={this.state.data} />
+                        <Liste restaurant={data} />
                     </div>
 
-                    <div id="map"><Maps restaurantLocation={this.state.restaurantLocation} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>
+                    <div id="map"><Maps restaurantLocation={restaurantLocation} location={userLocation} addRestaurant={this.addRestaurant} /></div>
 
 
                 </LoadScript>

@@ -34,8 +34,19 @@ class Maps extends Component{
 
 
 
+
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if ((props.location !== state.locationCenter) && (props.restaurantLocation !== state.restaurantLocation)) {
+            return {
+                locationCenter: props.location,
+                restaurantLocation: props.restaurantLocation
+            };
+        }
+        // Renvoie `null` si aucune mise à jour de l’état n’est nécessaire.
+        return null;
+    }
 
     handleClose = () => this.setState({showAdd:false})
 
@@ -101,17 +112,17 @@ class Maps extends Component{
             width: '1250px',
             height: '685px'
         }
-
+        const {locationCenter, restaurantLocation, drawing, showAdd} = this.state
 
         return (
             <div>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={this.state.locationCenter}
+                    center={locationCenter}
                     zoom={13}
                 >
 
-                    {this.state.restaurantLocation.map((x,index) =>
+                    {restaurantLocation.map((x,index) =>
                         <Marker
                             key={index}
                             position={x}
@@ -121,7 +132,7 @@ class Maps extends Component{
                         )
                     }
                     <Marker
-                        position={this.state.locationCenter}
+                        position={locationCenter}
                         icon={require("./resource/img/icons8-home-address-64.png")}
                         zIndex={this.state.restaurantLocation.length} //permet de placer le marker au dessus des autres
                     />
@@ -130,7 +141,7 @@ class Maps extends Component{
                         onMarkerComplete= {this.handleShow}
                         options = {
                             {
-                                drawingMode:this.state.drawing,
+                                drawingMode:{drawing},
                                 drawingControl: false,
                                 markerOptions: {
                                     icon: require("./resource/img/icons8-tableware-64.png")
@@ -142,7 +153,7 @@ class Maps extends Component{
                 </GoogleMap>
 
 
-                <Modal show={this.state.showAdd}  size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={showAdd}  size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         <Modal.Title>Ajouter un restaurant</Modal.Title>
                     </Modal.Header>

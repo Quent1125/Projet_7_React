@@ -13,8 +13,10 @@ class Liste extends Component{
     }
 
     componentDidMount() {
-        this.triRestaurant(5,1)
+        this.triRestaurant(5,0)
     }
+
+
 
     componentDidUpdate(prevProps) {
             if (prevProps.restaurant !== this.props.restaurant){
@@ -34,14 +36,14 @@ class Liste extends Component{
 
 
     render() {
-
+        const {restaurantTri} = this.state
         return (
             <>
                 <h2>Les restaurant</h2><br />
                 <Trie tri={this.triRestaurant} />
                 <div id="tableList">
 
-                    {this.state.restaurantTri.map( (x,index) =>
+                    {restaurantTri.map( (x,index) =>
                         <Restaurant key={index} name = {x.restaurantName} address= {x.address}  ratings={x.ratings} lat={x.lat} lng={x.long}  average={x.average}/>
                     )}
                 </div>

@@ -83,6 +83,10 @@ class Restaurant extends Component{
             width: "750px"
         };
         let av = this.defStar(this.props.average)
+        const location = {
+            lat: this.props.lat,
+            lng: this.props.lng
+        }
        return(
            <div id="case" >
                <h3>{this.props.name}</h3>
@@ -133,10 +137,10 @@ class Restaurant extends Component{
                            <GoogleMap
                                mapContainerStyle={mapContainerStyle}
                                zoom={7}
-                               center={this.state.location}
+                               center={location}
                            >
                                <StreetViewPanorama
-                                   position={this.state.location}
+                                   position={location}
                                    visible={true}
                                />
                            </GoogleMap>

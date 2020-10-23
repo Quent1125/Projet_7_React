@@ -36,6 +36,7 @@ class Trie extends Component{
 
 
     render() {
+        const  {valueMax, valueMin} = this.state
         return (
             <>
                 <Accordion>
@@ -44,7 +45,7 @@ class Trie extends Component{
                         <Form>
                             <FormGroup>
                                 <Form.Label>Afficher les restaurant avec une note compris entre </Form.Label>
-                                <Form.Control as="select" value={this.state.valueMin} custom className="min"  onChange={this.handleChange}>
+                                <Form.Control as="select" value={valueMin} custom className="min"  onChange={this.handleChange}>
                                     <option value={0}>0</option>
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
@@ -53,7 +54,7 @@ class Trie extends Component{
                                     <option value={5}>5</option>
                                 </Form.Control>
                                 <Form.Label> et </Form.Label>
-                                <Form.Control as="select" value={this.state.valueMax} custom className="max" onChange={this.handleChange}>
+                                <Form.Control as="select" value={valueMax} custom className="max" onChange={this.handleChange}>
                                     <option  value={0}>0</option>
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
