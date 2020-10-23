@@ -6,12 +6,15 @@ class Liste extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            restaurantTri : this.props.restaurant,
+            restaurantTri : [],
 
         }
         this.triRestaurant = this.triRestaurant.bind(this)
     }
 
+    componentDidMount() {
+        this.triRestaurant(5,1)
+    }
 
     componentDidUpdate(prevProps) {
             if (prevProps.restaurant !== this.props.restaurant){

@@ -12,14 +12,7 @@ class Restaurant extends Component{
         super(props);
         this.state = {
             showInfo :false,
-            name: this.props.name,
-            address: this.props.address,
-            ratings : this.props.ratings,
-            location : {
-                lat:this.props.lat,
-                lng:this.props.lng,
-            },
-            average : this.props.average,
+            ratings : [],
             new : {
                 stars:undefined,
                 comment:undefined
@@ -39,8 +32,7 @@ class Restaurant extends Component{
 
     addNewRatings(){
         if ((this.state.new.comment !== undefined) && (this.state.new.stars !== undefined)){
-            console.log("test2")
-            let tbR = this.state.ratings
+            let tbR = this.props.ratings
             tbR.push(this.state.new)
             this.setState({
                 ratings : tbR,
@@ -74,14 +66,14 @@ class Restaurant extends Component{
 
     }
 
-    defStar(){
+    defStar(average){
         let a = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5]
-        if (a.includes(this.state.average)  ){
-            return this.state.average
-        }else if (isNaN(this.state.average)){
+        if (a.includes(average)  ){
+            return average
+        }else if (isNaN(average)){
             return 0
         } else {
-            return Math.round(this.state.average)
+            return Math.round(average)
         }
     }
 
@@ -90,23 +82,23 @@ class Restaurant extends Component{
             height: "400px",
             width: "750px"
         };
-        let av = this.defStar()
+        let av = this.defStar(this.props.average)
        return(
            <div id="case" >
-               <h3>{this.state.name}</h3>
+               <h3>{this.props.name}</h3>
                <p>
-                   {this.state.address}<br/>
+                   {this.props.address}<br/>
                    <img  alt="etoiles" src={require(`./resource/img/${av}star.png`)}/><br />
-                   <Button variant="outline-primary" className={this.state.name} onClick={this.handleShow}>En voir plus</Button>
+                   <Button variant="outline-primary" className={this.props.name} onClick={this.handleShow}>En voir plus</Button>
                </p>
                <Modal show={this.state.showInfo} onHide={this.handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                    <Modal.Header closeButton>
-                       <Modal.Title>{this.state.name}</Modal.Title>
+                       <Modal.Title>{this.props.name}</Modal.Title>
                    </Modal.Header>
                    <Modal.Body >
                        <h1>Avis :</h1>
                        <div id="boxRatings">
-                           {this.state.ratings.map((x,index) =>
+                           {this.props.ratings.map((x,index) =>
                                <ul key={index}>
                                    <li><img key={index} id="littleStar" alt="étoiles" src={require(`./resource/img/${x.stars}star.png`)}   /> <br />
                                        {x.comment}</li>

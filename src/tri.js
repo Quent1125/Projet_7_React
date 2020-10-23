@@ -8,7 +8,6 @@ class Trie extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            //restaurant : this.props.restaurant,
             valueMax : 5,
             valueMin : 0,
         }

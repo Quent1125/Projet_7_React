@@ -14,8 +14,7 @@ class Maps extends Component{
     constructor(props){
         super(props)
         this.state = {
-            tabRestaurant : this.props.data,
-            locationCenter : this.props.location,
+            locationCenter : {},
             restaurantLocation : [],
             showAdd : false,
             drawing : 'marker',
@@ -32,15 +31,11 @@ class Maps extends Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.handleShow = this.handleShow.bind(this)
-        this.setRestaurantLocation = this.setRestaurantLocation.bind(this)
 
 
-    }
-
-    componentDidMount() {
-        this.setRestaurantLocation()
 
     }
+
 
     handleClose = () => this.setState({showAdd:false})
 
@@ -97,11 +92,6 @@ class Maps extends Component{
     }
 
 
-    setRestaurantLocation(){
-        let tabR = [];
-        this.state.tabRestaurant.forEach(x => tabR.push({lat:x.lat,lng:x.long}) )
-        this.setState({restaurantLocation : tabR})
-    }
 
 
 
@@ -133,7 +123,7 @@ class Maps extends Component{
                     <Marker
                         position={this.state.locationCenter}
                         icon={require("./resource/img/icons8-home-address-64.png")}
-                        zIndex={this.state.tabRestaurant.length} //permet de placer le marker au dessus des autres
+                        zIndex={this.state.restaurantLocation.length} //permet de placer le marker au dessus des autres
                     />
                     <DrawingManager
 

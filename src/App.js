@@ -9,6 +9,7 @@ class App extends Component{
         super(props);
         this.state ={
             userLocation : {lat: 48.8534, lng: 2.3488},
+            restaurantLocation : [],
             lib : ['drawing'],
             data: [],
             newR: {}
@@ -17,16 +18,21 @@ class App extends Component{
         this.addRestaurant = this.addRestaurant.bind(this)
         this.setLocation = this.setLocation.bind(this)
         this.setData = this.setData.bind(this)
+        this.setRestaurantLocation = this.setRestaurantLocation.bind(this)
+
 
     }
 
     componentDidMount() {
         this.setLocation();
-
-
-
     }
 
+
+    setRestaurantLocation(){
+        let tabR = [];
+        this.state.data.forEach(x => tabR.push({lat:x.lat,lng:x.long}) )
+        this.setState({restaurantLocation : tabR})
+    }
 
 
    setData(){
@@ -50,7 +56,8 @@ class App extends Component{
                    average: x.rating,
                })
            );
-           this.setState({data : tab2})
+           this.setState({data : tab2}, () => this.setRestaurantLocation())
+           console.log(this.state.data)
            tab2.forEach( e => {
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
                fetch(url3)
@@ -119,7 +126,7 @@ class App extends Component{
                         <Liste restaurant={this.state.data} />
                     </div>
 
-                    <div id="map"><Maps data={this.state.data} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>
+                    <div id="map"><Maps restaurantLocation={this.state.restaurantLocation} location={this.state.userLocation} addRestaurant={this.addRestaurant} /></div>
 
 
                 </LoadScript>
