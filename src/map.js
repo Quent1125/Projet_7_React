@@ -38,7 +38,7 @@ class Maps extends Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        if ((props.location !== state.locationCenter) && (props.restaurantLocation !== state.restaurantLocation)) {
+        if ((props.location !== state.locationCenter) || (props.restaurantLocation !== state.restaurantLocation)) {
             return {
                 locationCenter: props.location,
                 restaurantLocation: props.restaurantLocation

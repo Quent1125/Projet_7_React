@@ -25,6 +25,16 @@ class Restaurant extends Component{
         this.defStar = this.defStar.bind(this)
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (state.ratings !== props.ratings) {
+            return {
+                ratings: props.ratings
+            };
+        }
+        // Renvoie `null` si aucune mise à jour de l’état n’est nécessaire.
+        return null;
+    }
+
     handleClose = () => this.setState({showInfo:false});
 
 
