@@ -23,7 +23,8 @@ class Maps extends Component{
                 address:"",
                 lat:0,
                 long:0,
-                ratings:[]
+                ratings:[],
+                average: null
             }
 
         }
@@ -62,7 +63,8 @@ class Maps extends Component{
                 address:this.state.newR.address,
                 lat:lat,
                 long:lng,
-                ratings:this.state.newR.ratings
+                ratings:this.state.newR.ratings,
+                average : 1
             }
         })
     }
@@ -76,7 +78,8 @@ class Maps extends Component{
                     address:this.state.newR.address,
                     lat:this.state.newR.lat,
                     long:this.state.newR.long,
-                    ratings:this.state.newR.ratings
+                    ratings:this.state.newR.ratings,
+                    average: this.state.average
                 }
             })
         }else if (event.target.name === 'address'){
@@ -87,7 +90,9 @@ class Maps extends Component{
                     address:co,
                     lat:this.state.newR.lat,
                     long:this.state.newR.long,
-                    ratings:this.state.newR.ratings
+                    ratings:this.state.newR.ratings,
+                    average: this.state.average
+
                 }
             })
         }
@@ -141,7 +146,7 @@ class Maps extends Component{
                         onMarkerComplete= {this.handleShow}
                         options = {
                             {
-                                drawingMode:{drawing},
+                                drawingMode:drawing,
                                 drawingControl: false,
                                 markerOptions: {
                                     icon: require("./resource/img/icons8-tableware-64.png")

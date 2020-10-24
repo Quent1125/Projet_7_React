@@ -120,9 +120,9 @@ class App extends Component{
     }
 
     addRestaurant(newR){
-        let tabR = this.state.data
+        let tabR = this.state.dataTrier
         tabR.push(newR)
-        this.setState({data : tabR})
+        this.setState({dataTrier : tabR})
     }
 
     render() {
