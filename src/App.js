@@ -12,12 +12,14 @@ class App extends Component{
             restaurantLocation : [],
             lib : ['drawing'],
             data: [],
+            dataTrier: [],
             newR: {}
         }
 
         this.addRestaurant = this.addRestaurant.bind(this)
         this.setLocation = this.setLocation.bind(this)
         this.setData = this.setData.bind(this)
+        this.setDataTrier = this.setDataTrier.bind(this)
         this.setRestaurantLocation = this.setRestaurantLocation.bind(this)
 
 
@@ -25,12 +27,19 @@ class App extends Component{
 
     componentDidMount() {
         this.setLocation();
+
+    }
+
+    setDataTrier(tabR){
+        this.setState({
+            dataTrier:tabR,
+        }, () => this.setRestaurantLocation)
     }
 
 
     setRestaurantLocation(){
         let tabR = [];
-        this.state.data.forEach(x => tabR.push({lat:x.lat,lng:x.long}) )
+        this.state.dataTrier.forEach(x => tabR.push({lat:x.lat,lng:x.long}) )
         this.setState({restaurantLocation : tabR})
     }
 
@@ -55,7 +64,10 @@ class App extends Component{
                    average: x.rating,
                })
            );
-           this.setState({data : tab2}, () => this.setRestaurantLocation())
+           this.setState({
+               data : tab2,
+               dataTrier : tab2
+           }, () => this.setRestaurantLocation())
            tab2.forEach( e => {
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
                fetch(url3)
@@ -114,15 +126,15 @@ class App extends Component{
     }
 
     render() {
-        const {data, restaurantLocation, userLocation} = this.state
+        const {data, restaurantLocation, userLocation, lib} = this.state
         return(
 
                 <LoadScript
                     googleMapsApiKey="AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY"
-                    libraries={this.state.lib}
+                    libraries={lib}
                 >
                     <div id="list">
-                        <Liste restaurant={data} />
+                        <Liste restaurant={data} tridata={this.setDataTrier} />
                     </div>
 
                     <div id="map"><Maps restaurantLocation={restaurantLocation} location={userLocation} addRestaurant={this.addRestaurant} /></div>
