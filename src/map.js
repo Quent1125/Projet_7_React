@@ -110,8 +110,7 @@ class Maps extends Component{
 
 
 
-
-
+    
     render() {
         const containerStyle = {
             width: '1250px',
