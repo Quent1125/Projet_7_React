@@ -33,7 +33,7 @@ class App extends Component{
     setDataTrier(tabR){
         this.setState({
             dataTrier:tabR,
-        }, () => this.setRestaurantLocation)
+        }, () => this.setRestaurantLocation())
     }
 
 
