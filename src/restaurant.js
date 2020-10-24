@@ -25,8 +25,15 @@ class Restaurant extends Component{
         this.defStar = this.defStar.bind(this)
     }
 
+    componentDidMount() {
+        this.setState({
+            ratings: this.props.ratings
+        })
+    }
+
+
     static getDerivedStateFromProps(props, state) {
-        if (state.ratings !== props.ratings) {
+        if (props.ratings !== state.ratings) {
             return {
                 ratings: props.ratings
             };
@@ -42,7 +49,7 @@ class Restaurant extends Component{
 
     addNewRatings(){
         if ((this.state.new.comment !== undefined) && (this.state.new.stars !== undefined)){
-            let tbR = this.props.ratings
+            let tbR = this.state.ratings
             tbR.push(this.state.new)
             this.setState({
                 ratings : tbR,
@@ -112,7 +119,7 @@ class Restaurant extends Component{
                    <Modal.Body >
                        <h1>Avis :</h1>
                        <div id="boxRatings">
-                           {this.props.ratings.map((x,index) =>
+                           {this.state.ratings.map((x,index) =>
                                <ul key={index}>
                                    <li><img key={index} id="littleStar" alt="étoiles" src={require(`./resource/img/${x.stars}star.png`)}   /> <br />
                                        {x.comment}</li>

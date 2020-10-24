@@ -12,11 +12,6 @@ class Liste extends Component{
         this.triRestaurant = this.triRestaurant.bind(this)
     }
 
-    componentDidMount() {
-        this.triRestaurant(5,0)
-    }
-
-
 
     componentDidUpdate(prevProps) {
             if (prevProps.restaurant !== this.props.restaurant){
