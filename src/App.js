@@ -70,7 +70,9 @@ class App extends Component{
                dataTrier : tab2
            }, () => this.setRestaurantLocation())
            tab2.forEach( e => {
+               console.log(e.place_id)
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
+               console.log(url3)
                fetch(url3)
                .then((response) =>{
                    return response.json()
@@ -88,7 +90,7 @@ class App extends Component{
                    }
                })
                .catch(function (error){
-                    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+                    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message, url3);
                });
 
            })

@@ -13,6 +13,15 @@ class Liste extends Component{
     }
 
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.dataTrier !== state.restaurantTri) {
+            return {
+                ratings: props.dataTrier
+            };
+        }
+        return null;
+    }
+
     componentDidUpdate(prevProps) {
             if (prevProps.restaurant !== this.props.restaurant){
                 this.setState({restaurantTri :

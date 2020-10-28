@@ -12,7 +12,7 @@ class Restaurant extends Component{
         super(props);
         this.state = {
             showInfo :false,
-            ratings : [],
+            ratings : this.props.ratings,
             new : {
                 stars:undefined,
                 comment:undefined
@@ -25,11 +25,6 @@ class Restaurant extends Component{
         this.defStar = this.defStar.bind(this)
     }
 
-    componentDidMount() {
-        this.setState({
-            ratings: this.props.ratings
-        })
-    }
 
 
     static getDerivedStateFromProps(props, state) {
@@ -94,6 +89,7 @@ class Restaurant extends Component{
     }
 
     render() {
+        console.log(this.state.ratings)
         const mapContainerStyle = {
             height: "400px",
             width: "750px"
