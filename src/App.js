@@ -47,6 +47,7 @@ class App extends Component{
    setData(){
        let tab2 =[]
        let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
+       console.log(url2)
        fetch(url2)
        .then((response) => {
            return response.json()

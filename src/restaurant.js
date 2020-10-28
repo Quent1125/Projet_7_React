@@ -38,7 +38,6 @@ class Restaurant extends Component{
                 ratings: props.ratings
             };
         }
-        // Renvoie `null` si aucune mise à jour de l’état n’est nécessaire.
         return null;
     }
 
