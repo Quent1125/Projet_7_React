@@ -89,7 +89,6 @@ class Restaurant extends Component{
     }
 
     render() {
-        console.log(this.state.ratings)
         const mapContainerStyle = {
             height: "400px",
             width: "750px"

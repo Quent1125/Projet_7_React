@@ -47,7 +47,6 @@ class App extends Component{
    setData(){
        let tab2 =[]
        let url2 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.state.userLocation.lat+","+this.state.userLocation.lng+"&rankby=distance&type=restaurant&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
-       console.log(url2)
        fetch(url2)
        .then((response) => {
            return response.json()
@@ -70,9 +69,7 @@ class App extends Component{
                dataTrier : tab2
            }, () => this.setRestaurantLocation())
            tab2.forEach( e => {
-               console.log(e.place_id)
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
-               console.log(url3)
                fetch(url3)
                .then((response) =>{
                    return response.json()
