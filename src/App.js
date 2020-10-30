@@ -109,10 +109,15 @@ class App extends Component{
                     }
                 },() =>  this.setData());
 
+            },() =>{
+                alert("La géolocalisation n'est pas activé sur votre navigateur internet")
+                this.setState( {userLocation: {
+                        lat: 48.8534,
+                        lng: 2.3488
+                    }
+                },() =>  this.setData());
             })
-
         }
-
     }
 
     addRestaurant(newR){
