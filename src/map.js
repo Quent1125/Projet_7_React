@@ -49,7 +49,7 @@ class Maps extends Component{
     }
 
     handleClose = () => this.setState({
-        showAdd:false
+        showAdd:false,
         drawing : 'marker',
         newR : {}
     })
