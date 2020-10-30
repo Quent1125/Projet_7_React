@@ -48,7 +48,11 @@ class Maps extends Component{
         return null;
     }
 
-    handleClose = () => this.setState({showAdd:false})
+    handleClose = () => this.setState({
+        showAdd:false
+        drawing : 'marker',
+        newR : {}
+    })
 
 
     handleShow = marker => {
@@ -98,12 +102,12 @@ class Maps extends Component{
     }
 
     handleSend(){
+        this.props.addRestaurant(this.state.newR)
         this.setState({
             drawing : 'marker',
             showAdd:false,
-
+            newR : {}
         })
-        this.props.addRestaurant(this.state.newR)
     }
 
 
@@ -156,7 +160,7 @@ class Maps extends Component{
                 </GoogleMap>
 
 
-                <Modal show={showAdd}  size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={showAdd} onHide={this.handleClose}  size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         <Modal.Title>Ajouter un restaurant</Modal.Title>
                     </Modal.Header>
