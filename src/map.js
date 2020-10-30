@@ -24,7 +24,7 @@ class Maps extends Component{
                 lat:0,
                 long:0,
                 ratings:[],
-                average: null
+                average: 1
             }
 
         }
@@ -102,12 +102,12 @@ class Maps extends Component{
     }
 
     handleSend(){
-        this.props.addRestaurant(this.state.newR)
         this.setState({
             drawing : 'marker',
             showAdd:false,
-            newR : {}
         })
+        this.props.addRestaurant(this.state.newR)
+
     }
 
 
@@ -151,7 +151,7 @@ class Maps extends Component{
                                 drawingMode:drawing,
                                 drawingControl: false,
                                 markerOptions: {
-                                    icon: require("./resource/img/icons8-tableware-64.png")
+                                    visible: false
                                 },
                             }
                         }
