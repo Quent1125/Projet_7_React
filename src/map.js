@@ -45,7 +45,6 @@ class Maps extends Component{
                 restaurantLocation: props.restaurantLocation
             };
         }
-        // Renvoie `null` si aucune mise à jour de l’état n’est nécessaire.
         return null;
     }
 

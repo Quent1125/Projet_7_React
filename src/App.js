@@ -64,11 +64,8 @@ class App extends Component{
                    average: x.rating,
                })
            );
-           this.setState({
-               data : tab2,
-               dataTrier : tab2
-           }, () => this.setRestaurantLocation())
-           tab2.forEach( e => {
+
+           tab2.forEach( (e,index) => {
                let url3 = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id="+e.place_id+"&key=AIzaSyAj-TZ0NWkI3FuhyEV_EEEBeHxbPzE9WkY";
                fetch(url3)
                .then((response) =>{
@@ -84,6 +81,10 @@ class App extends Component{
                            })
                        );
                        e.ratings = tab3;
+                       this.setState({
+                           data : tab2,
+                           dataTrier : tab2
+                       }, () => this.setRestaurantLocation())
                    }
                })
                .catch(function (error){
@@ -95,11 +96,6 @@ class App extends Component{
        .catch(function (error){
            console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
        });
-
-
-
-
-
     }
 
 
