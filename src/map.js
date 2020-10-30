@@ -14,6 +14,7 @@ class Maps extends Component{
     constructor(props){
         super(props)
         this.state = {
+            newPos : null,
             locationCenter : {},
             restaurantLocation : [],
             showAdd : false,
@@ -32,6 +33,9 @@ class Maps extends Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.handleShow = this.handleShow.bind(this)
+        this.handleLoad = this.handleLoad.bind(this)
+        this.handleMouseOut = this.handleMouseOut.bind(this)
+        this.handleCenterChanged = this.handleCenterChanged.bind(this)
 
 
 
@@ -61,6 +65,7 @@ class Maps extends Component{
         this.setState({
             drawing : null,
             showAdd:true,
+            mapRef : null,
             newR : {
                 restaurantName:this.state.newR.restaurantName,
                 address:this.state.newR.address,
@@ -110,7 +115,28 @@ class Maps extends Component{
 
     }
 
+    handleLoad(map) {
+        this.setState({
+            mapRef: map
+        })
+    }
 
+    handleCenterChanged() {
+        if (!this.state.mapRef) return;
+        this.setState({
+            newPos: this.state.mapRef.getCenter().toJSON()
+        })
+    }
+
+    handleMouseOut(e){
+        if (this.state.newPos !== null){
+            this.props.move(this.state.newPos)
+            this.setState({
+                newPos : null
+            })
+        }
+
+    }
 
 
 
@@ -120,10 +146,12 @@ class Maps extends Component{
             height: '685px'
         }
         const {locationCenter, restaurantLocation, drawing, showAdd} = this.state
-
         return (
             <div>
                 <GoogleMap
+                    onLoad={this.handleLoad}
+                    onCenterChanged={this.handleCenterChanged}
+                    onMouseOut={this.handleMouseOut}
                     mapContainerStyle={containerStyle}
                     center={locationCenter}
                     zoom={13}

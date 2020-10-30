@@ -20,6 +20,7 @@ class App extends Component{
         this.setLocation = this.setLocation.bind(this)
         this.setData = this.setData.bind(this)
         this.setDataTrier = this.setDataTrier.bind(this)
+        this.moveLocation = this.moveLocation.bind(this)
         this.setRestaurantLocation = this.setRestaurantLocation.bind(this)
 
 
@@ -126,6 +127,12 @@ class App extends Component{
         this.setState({dataTrier : tabR},() => this.setRestaurantLocation())
     }
 
+    moveLocation(location){
+        this.setState( {
+            userLocation: location
+        },() =>  this.setData());
+    }
+
     render() {
         const {data, restaurantLocation, userLocation, lib} = this.state
         return(
@@ -138,7 +145,7 @@ class App extends Component{
                         <Liste restaurant={data} tridata={this.setDataTrier} />
                     </div>
 
-                    <div id="map"><Maps restaurantLocation={restaurantLocation} location={userLocation} addRestaurant={this.addRestaurant} /></div>
+                    <div id="map"><Maps move={this.moveLocation} restaurantLocation={restaurantLocation} location={userLocation} addRestaurant={this.addRestaurant} /></div>
 
 
                 </LoadScript>
