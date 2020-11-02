@@ -124,7 +124,9 @@ class App extends Component{
     addRestaurant(newR){
         let tabR = this.state.dataTrier
         tabR.push(newR)
-        this.setState({dataTrier : tabR},() => this.setRestaurantLocation())
+        this.setState({
+            dataTrier : tabR
+        },() => this.setDataTrier(tabR))
     }
 
     moveLocation(location){
