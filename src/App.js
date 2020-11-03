@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { LoadScript } from '@react-google-maps/api';
 import Maps from './map'
 import Liste from './liste'
+//import dataJSON from './resource/restaurant.json'    //Importer fichier JSON dans la variables dataJSON et remplacer les valeurs ligne 87 et 88
 
 
 class App extends Component{
@@ -83,8 +84,8 @@ class App extends Component{
                        );
                        e.ratings = tab3;
                        this.setState({
-                           data : tab2,
-                           dataTrier : tab2
+                           data : tab2,                    //Pour utiliser le fichier json remplacer tab2 par dataJSON
+                           dataTrier : tab2                 //Pour utiliser le fichier json remplacer tab2 par dataJSON
                        }, () => this.setRestaurantLocation())
                    }
                })
