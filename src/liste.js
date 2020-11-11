@@ -13,19 +13,20 @@ class Liste extends Component{
     }
 
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.restaurant !== state.restaurantTri) {
-            return {
-                restaurantTri: props.restaurant
-            };
+    componentDidUpdate(prevProps) {
+        if (prevProps.restaurant !== this.props.restaurant){
+            this.setState({restaurantTri :
+                    this.props.restaurant.filter(x=> (5>= x.average) && (x.average>=1))
+            })
         }
-        return null;
     }
+    
 
 
 
 
     triRestaurant(max,min){
+        console.log("test tri")
         let tabR = this.props.restaurant.filter(x => (max>= x.average) && (x.average >=min))
         this.setState({restaurantTri:tabR}, () => this.props.tridata(this.state.restaurantTri))
 
@@ -37,7 +38,7 @@ class Liste extends Component{
         const {restaurantTri} = this.state
         return (
             <>
-                <h2>Les restaurant</h2><br />
+                <h2>Les restaurants</h2><br />
                 <Trie tri={this.triRestaurant} />
                 <div id="tableList">
 
