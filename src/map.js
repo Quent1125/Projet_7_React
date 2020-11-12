@@ -25,7 +25,8 @@ class Maps extends Component{
                 lat:0,
                 long:0,
                 ratings:[],
-                average: 1
+                average: 1,
+                place_id: "New Restaurant"
             }
 
         }
@@ -60,58 +61,48 @@ class Maps extends Component{
 
 
     handleShow = marker => {
-        let lat = marker.getPosition().lat()
-        let lng = marker.getPosition().lng()
+        let R = this.state.newR
+        R.lat = marker.getPosition().lat()
+        R.long = marker.getPosition().lng()
         this.setState({
             drawing : null,
             showAdd:true,
             mapRef : null,
-            newR : {
-                restaurantName:this.state.newR.restaurantName,
-                address:this.state.newR.address,
-                lat:lat,
-                long:lng,
-                ratings:this.state.newR.ratings,
-                average : 1
-            }
+            newR : R
         })
     }
 
     handleChange(event) {
+        let R = this.state.newR
         if (event.target.name === 'name'){
-            let s =  event.target.value
+            R.restaurantName =  event.target.value
             this.setState({
-                newR : {
-                    restaurantName:s,
-                    address:this.state.newR.address,
-                    lat:this.state.newR.lat,
-                    long:this.state.newR.long,
-                    ratings:this.state.newR.ratings,
-                    average: this.state.average
-                }
+                newR : R
             })
         }else if (event.target.name === 'address'){
-            let co = event.target.value
+            R.address = event.target.value
             this.setState({
-                newR : {
-                    restaurantName:this.state.newR.restaurantName,
-                    address:co,
-                    lat:this.state.newR.lat,
-                    long:this.state.newR.long,
-                    ratings:this.state.newR.ratings,
-                    average: this.state.average
-
-                }
+                newR : R
             })
         }
     }
 
     handleSend(){
+        this.props.addRestaurant(this.state.newR)
         this.setState({
             drawing : 'marker',
             showAdd:false,
+            newR : {
+                restaurantName:"",
+                address:"",
+                lat:0,
+                long:0,
+                ratings:[],
+                average: 1,
+                place_id: "New Restaurant"
+            }
         })
-        this.props.addRestaurant(this.state.newR)
+
 
     }
 

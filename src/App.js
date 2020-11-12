@@ -32,11 +32,7 @@ class App extends Component{
 
     }
 
-    setDataTrier(tabR){
-        this.setState({
-            dataTrier:tabR,
-        }, () => this.setRestaurantLocation())
-    }
+
 
 
     setRestaurantLocation(){
@@ -125,11 +121,14 @@ class App extends Component{
     addRestaurant(newR){
         let tabR = this.state.dataTrier
         tabR.push(newR)
-        this.setState({
-            dataTrier : tabR
-        },() => this.setDataTrier(tabR))
+        this.setDataTrier(tabR)
     }
 
+    setDataTrier(tabR){
+        this.setState({
+            dataTrier:tabR,
+        }, () => this.setRestaurantLocation())
+    }
     moveLocation(location){
         this.setState( {
             userLocation: location
