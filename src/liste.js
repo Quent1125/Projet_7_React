@@ -13,20 +13,6 @@ class Liste extends Component{
     }
 
 
-/*
-    componentDidUpdate(prevProps) {
-        if (prevProps.restaurant !== this.props.restaurant){
-            this.setState({restaurantTri :
-                    this.props.restaurant.filter(x=> (5>= x.average) && (x.average>=0))
-            })
-        }
-    }*/
-
-
-
-
-
-
 
 
     triRestaurant(max,min){
